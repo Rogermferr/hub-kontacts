@@ -24,7 +24,8 @@ Uma aplicação de Gerenciamento de Usuários e Contatos é uma poderosa ferrame
 * Styled Components;
 * Zod.
 
+* ## :rocket: Utilizando a aplicação
 
-A API tem um total de 9 endpoints, sendo em volta principalmente do usuário - podendo cadastrar seu perfil, fazer login e cadastrar seus contatos.
-
+Para utilizar a aplicação será necessário rodar a api que a aplicação se baseou.
+Acesse https://github.com/Rogermferr/crud-user-contacts-api para saber mais.
 
