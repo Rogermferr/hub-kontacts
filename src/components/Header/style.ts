@@ -21,4 +21,11 @@ export const HeaderStyle = styled.header`
     width: 300px;
     margin-left: 150px;
   }
+
+  @media (max-width: 769px) {
+    justify-content: center;
+    img {
+      margin-left: 0;
+    }
+  }
 `;

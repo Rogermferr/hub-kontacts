@@ -6,6 +6,7 @@ import {
   IRegisterContact,
 } from "./@types";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export const ContactsContext = createContext({} as IContactsContext);
 
@@ -28,8 +29,10 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
         });
 
         setListContacts(data);
-      } catch (error) {
-        console.error(error);
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      } finally {
+        console.clear();
       }
     };
 
@@ -44,9 +47,13 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
         },
       });
 
+      toast.success("Contato criado");
+
       setIsOpen(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 
@@ -76,9 +83,13 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
         },
       });
 
+      toast.success("Contato editado");
+
       setIsEditOpen(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 
@@ -90,9 +101,13 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
         },
       });
 
+      toast.success("Contato deletado");
+
       setIsDeleteOpen(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 

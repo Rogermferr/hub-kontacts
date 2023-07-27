@@ -9,5 +9,12 @@ export const RegisterPageStyle = styled.main`
 
   img {
     width: 350px;
+    height: 50px;
+  }
+
+  @media (max-width: 769px) {
+    img {
+      width: 90%;
+    }
   }
 `;

@@ -9,6 +9,7 @@ import {
 } from "./@types";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -33,6 +34,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUser(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        console.clear();
       }
     };
 
@@ -49,8 +52,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       setUser(data.user);
 
       navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 
@@ -60,9 +65,12 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     try {
       await api.post<IRegisterUser>("/users", newUserData);
 
+      toast.success("Usuário cadastrado");
       navigate("/");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 
@@ -79,9 +87,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         },
       });
 
+      toast.success("Perfil editado");
+
       setIsModalOpen(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 
@@ -95,10 +107,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
       setIsModalDeleteOpen(false);
       setUser(null);
+
       localStorage.removeItem("@KK:TOKEN");
+
       navigate("/");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.response.data.message);
+    } finally {
+      console.clear();
     }
   };
 

@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerContactSchema } from "./validations";
 import Input from "../../Input";
 import { useContactsContext } from "../../../hooks/useContactsContext";
+import { ModalFormStyle } from "../style";
 
 const ModalCreateContact = () => {
   const { createContacts, setIsOpen } = useContactsContext();
@@ -15,19 +16,25 @@ const ModalCreateContact = () => {
     formState: { errors },
   } = useForm<IRegisterContact>({
     resolver: zodResolver(registerContactSchema),
+    mode: "onChange",
   });
 
   return (
     <BackgroundModalStyle>
-      <div role="dialog">
+      <ModalFormStyle role="dialog">
         <form onSubmit={handleSubmit(createContacts)}>
           <Input
             id="fullName"
+            label="Nome completo"
+            placeholder="Digite o nome do contato aqui"
             {...register("fullName")}
             errors={errors.fullName?.message}
           />
           <Input
             id="telephone"
+            label="Número de telefone"
+            type="number"
+            placeholder="DDD e o número do telefone"
             {...register("telephone")}
             errors={errors.telephone?.message}
           />
@@ -36,7 +43,7 @@ const ModalCreateContact = () => {
             Cancelar
           </button>
         </form>
-      </div>
+      </ModalFormStyle>
     </BackgroundModalStyle>
   );
 };

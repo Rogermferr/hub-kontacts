@@ -5,6 +5,7 @@ import { registerSchema } from "../../Forms/RegisterForm/validations";
 import { useForm } from "react-hook-form";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { BackgroundModalStyle } from "../../../styles/backgroundModal";
+import { ModalFormStyle } from "../style";
 
 const ModalEditProfile = () => {
   const { userEditProfile, setIsModalOpen, user } = useUserContext();
@@ -20,25 +21,29 @@ const ModalEditProfile = () => {
       email: user?.email,
       telephone: user?.telephone,
     },
+    mode: "onChange",
   });
 
   return (
     <BackgroundModalStyle>
-      <div role="dialog">
+      <ModalFormStyle role="dialog">
         <form onSubmit={handleSubmit(userEditProfile)}>
           <Input
             id="fullName"
+            label="Nome Completo"
             {...register("fullName")}
             errors={errors.fullName?.message}
           />
           <Input
             id="email"
+            label="Email"
             {...register("email")}
             errors={errors.email?.message}
           />
           <Input
             id="password"
             type="password"
+            label="Senha"
             placeholder="Digite aqui sua nova senha"
             {...register("password")}
             errors={errors.password?.message}
@@ -46,12 +51,14 @@ const ModalEditProfile = () => {
           <Input
             id="passwordConfirmation"
             type="password"
+            label="Confirmação de senha"
             placeholder="Digite novamente a sua senha"
             {...register("passwordConfirmation")}
             errors={errors.passwordConfirmation?.message}
           />
           <Input
             id="telephone"
+            label="Número de telefone"
             {...register("telephone")}
             errors={errors.telephone?.message}
           />
@@ -60,7 +67,7 @@ const ModalEditProfile = () => {
             Cancelar
           </button>
         </form>
-      </div>
+      </ModalFormStyle>
     </BackgroundModalStyle>
   );
 };

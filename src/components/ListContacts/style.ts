@@ -7,4 +7,11 @@ export const ListContactsStyle = styled.ul`
 
   color: #fff;
   width: 100%;
+
+  @media (max-width: 729px) {
+    display: flex;
+
+    width: 100%;
+    overflow-x: auto;
+  }
 `;

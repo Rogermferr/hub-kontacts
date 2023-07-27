@@ -5,6 +5,7 @@ import { IRegisterContact } from "../../../providers/ContactsContext/@types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerContactSchema } from "../ModalCreateContact/validations";
 import { useContactsContext } from "../../../hooks/useContactsContext";
+import { ModalFormStyle } from "../style";
 
 const ModalEditContact = () => {
   const { editContacts, setIsEditOpen, editingContact } = useContactsContext();
@@ -19,19 +20,23 @@ const ModalEditContact = () => {
       fullName: editingContact.fullName,
       telephone: editingContact.telephone,
     },
+    mode: "onChange",
   });
 
   return (
     <BackgroundModalStyle>
-      <div role="dialog">
+      <ModalFormStyle role="dialog">
         <form onSubmit={handleSubmit(editContacts)}>
           <Input
             id="fullName"
+            label="Nome completo"
             {...register("fullName")}
             errors={errors.fullName?.message}
           />
           <Input
             id="telephone"
+            label="Número de telefone"
+            type="number"
             {...register("telephone")}
             errors={errors.telephone?.message}
           />
@@ -40,7 +45,7 @@ const ModalEditContact = () => {
             Cancelar
           </button>
         </form>
-      </div>
+      </ModalFormStyle>
     </BackgroundModalStyle>
   );
 };

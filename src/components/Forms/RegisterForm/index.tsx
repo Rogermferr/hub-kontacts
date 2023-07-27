@@ -14,6 +14,7 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<IRegisterUser>({
     resolver: zodResolver(registerSchema),
+    mode: "onChange",
   });
 
   const { userRegister } = useUserContext();

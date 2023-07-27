@@ -56,4 +56,8 @@ export const LoginFormStyle = styled.form`
 
     transition: all 1s;
   }
+
+  @media (max-width: 769px) {
+    width: 80%;
+  }
 `;

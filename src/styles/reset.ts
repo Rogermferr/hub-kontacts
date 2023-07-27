@@ -45,22 +45,22 @@ export const GlobalReset = createGlobalStyle`
 
     }
     
-    /* ::-webkit-scrollbar{
+    ::-webkit-scrollbar{
         
         width: 10px;
     }
     
     ::-webkit-scrollbar-track{
-        background-color: var(--color-primary);
+        background-color: #8e0e00;
         
         border-radius: 0.5rem;
     }
     
     ::-webkit-scrollbar-thumb{
-        background-color: var(--color-secondary);
+        background-color: #000;
         
         border-radius: 0.5rem;
-    } */
+    }
 
     ol, ul {
         list-style: none;

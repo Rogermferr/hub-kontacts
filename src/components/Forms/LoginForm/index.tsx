@@ -14,6 +14,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<ILoginUser>({
     resolver: zodResolver(loginSchema),
+    mode: "onChange",
   });
 
   const { userLogin } = useUserContext();

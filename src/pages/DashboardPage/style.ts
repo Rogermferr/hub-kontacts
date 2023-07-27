@@ -8,7 +8,7 @@ export const DashboardPageStyle = styled.div`
   main {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 64px;
 
     margin: 0 150px;
 
@@ -21,6 +21,19 @@ export const DashboardPageStyle = styled.div`
 
     h2 {
       font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 769px) {
+    main {
+      margin: 0 16px;
+      text-align: center;
+
+      h1 {
+        line-height: 150%;
+        text-align: center;
+      }
     }
   }
 `;
