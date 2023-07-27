@@ -30,7 +30,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
         setListContacts(data);
       } catch (error: any) {
-        toast.error(error?.response.data.message);
+        toast.error(error?.response?.data?.message);
       } finally {
         console.clear();
       }
@@ -51,7 +51,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       setIsOpen(false);
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }
@@ -87,7 +87,10 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       setIsEditOpen(false);
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      const message = error?.response?.data?.message;
+      console.log(error);
+
+      toast.error(message);
     } finally {
       console.clear();
     }
@@ -105,7 +108,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       setIsDeleteOpen(false);
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }

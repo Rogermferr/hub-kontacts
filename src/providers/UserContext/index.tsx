@@ -53,7 +53,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
       navigate("/dashboard");
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }
@@ -68,7 +68,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       toast.success("Usuário cadastrado");
       navigate("/");
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }
@@ -91,7 +91,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
       setIsModalOpen(false);
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }
@@ -112,7 +112,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
       navigate("/");
     } catch (error: any) {
-      toast.error(error?.response.data.message);
+      toast.error(error?.response?.data?.message);
     } finally {
       console.clear();
     }
