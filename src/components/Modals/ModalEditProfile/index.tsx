@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { BackgroundModalStyle } from "../../../styles/backgroundModal";
 import { ModalFormStyle } from "../style";
+import useOutClick from "../../../hooks/useOutClick";
+import useKeyDown from "../../../hooks/useKeyDown";
 
 const ModalEditProfile = () => {
   const { userEditProfile, setIsModalOpen, user } = useUserContext();
@@ -24,9 +26,17 @@ const ModalEditProfile = () => {
     mode: "onChange",
   });
 
+  const modalRef = useOutClick(() => {
+    setIsModalOpen(false);
+  });
+
+  const buttonRef = useKeyDown("Escape", (element: any) => {
+    element.click();
+  });
+
   return (
     <BackgroundModalStyle>
-      <ModalFormStyle role="dialog">
+      <ModalFormStyle role="dialog" ref={modalRef}>
         <form onSubmit={handleSubmit(userEditProfile)}>
           <Input
             id="fullName"
@@ -63,7 +73,10 @@ const ModalEditProfile = () => {
             errors={errors.telephone?.message}
           />
           <button type="submit">Editar</button>
-          <button type="button" onClick={() => setIsModalOpen(false)}>
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            ref={buttonRef}>
             Cancelar
           </button>
         </form>

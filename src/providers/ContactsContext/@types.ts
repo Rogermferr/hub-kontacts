@@ -21,11 +21,13 @@ export interface IContactsProviderProps {
 export interface IContact {
   id: string;
   fullName: string;
+  email: string;
   telephone: string;
   createdAt: string | Date;
 }
 
 export interface IRegisterContact {
   fullName: string;
+  email: string;
   telephone: string;
 }

@@ -19,6 +19,7 @@ export const HeaderStyle = styled.header`
 
   img {
     width: 300px;
+    height: 50px;
     margin-left: 150px;
   }
 
@@ -26,6 +27,7 @@ export const HeaderStyle = styled.header`
     justify-content: center;
     img {
       margin-left: 0;
+      width: 90%;
     }
   }
 `;

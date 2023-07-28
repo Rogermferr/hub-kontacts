@@ -9,6 +9,7 @@ const CardContacts = ({ contact }: ICardContactsProps) => {
     <CardContactsStyle>
       <h3>{contact.fullName}</h3>
       <p>{contact.telephone}</p>
+      <p>{contact.email}</p>
 
       <button onClick={() => findContactEdit(contact.id)}>
         Editar Contato

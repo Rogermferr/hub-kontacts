@@ -6,6 +6,8 @@ import { registerContactSchema } from "./validations";
 import Input from "../../Input";
 import { useContactsContext } from "../../../hooks/useContactsContext";
 import { ModalFormStyle } from "../style";
+import useOutClick from "../../../hooks/useOutClick";
+import useKeyDown from "../../../hooks/useKeyDown";
 
 const ModalCreateContact = () => {
   const { createContacts, setIsOpen } = useContactsContext();
@@ -19,9 +21,17 @@ const ModalCreateContact = () => {
     mode: "onChange",
   });
 
+  const modalRef = useOutClick(() => {
+    setIsOpen(false);
+  });
+
+  const buttonRef = useKeyDown("Escape", (element: any) => {
+    element.click();
+  });
+
   return (
     <BackgroundModalStyle>
-      <ModalFormStyle role="dialog">
+      <ModalFormStyle role="dialog" ref={modalRef}>
         <form onSubmit={handleSubmit(createContacts)}>
           <Input
             id="fullName"
@@ -29,6 +39,13 @@ const ModalCreateContact = () => {
             placeholder="Digite o nome do contato aqui"
             {...register("fullName")}
             errors={errors.fullName?.message}
+          />
+          <Input
+            id="email"
+            label="Email"
+            placeholder="Digite o email do contato aqui"
+            {...register("email")}
+            errors={errors.email?.message}
           />
           <Input
             id="telephone"
@@ -39,7 +56,10 @@ const ModalCreateContact = () => {
             errors={errors.telephone?.message}
           />
           <button type="submit">Criar</button>
-          <button type="button" onClick={() => setIsOpen(false)}>
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            ref={buttonRef}>
             Cancelar
           </button>
         </form>
