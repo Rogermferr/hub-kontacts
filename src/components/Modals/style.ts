@@ -5,7 +5,7 @@ export const ModalFormStyle = styled.div`
   flex-direction: column;
 
   width: 400px;
-  height: 300px;
+  height: 400px;
   overflow-y: auto;
 
   background: #8e0e00;

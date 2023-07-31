@@ -41,7 +41,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
   const createContacts = async (contactData: IRegisterContact) => {
     try {
-      await api.post<IContact>("/contacts", contactData, {
+      const { data } = await api.post<IContact>("/contacts", contactData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,12 +49,15 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       toast.success("Contato criado");
 
+      console.log(data);
+
       setIsOpen(false);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
-    } finally {
-      console.clear();
     }
+    // finally {
+    //   console.clear();
+    // }
   };
 
   const findContactEdit = (contactId: string) => {

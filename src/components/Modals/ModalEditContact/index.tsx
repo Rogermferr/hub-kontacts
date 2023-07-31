@@ -20,6 +20,7 @@ const ModalEditContact = () => {
     resolver: zodResolver(registerContactSchema),
     defaultValues: {
       fullName: editingContact.fullName,
+      email: editingContact.email,
       telephone: editingContact.telephone,
     },
     mode: "onChange",
