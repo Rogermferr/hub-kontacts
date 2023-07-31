@@ -6,6 +6,7 @@ import { useUserContext } from "../../../hooks/useUserContext";
 import { registerSchema } from "./validations";
 import { Link } from "react-router-dom";
 import { RegisterFormStyle } from "./style";
+import InputPass from "../../Input/InputPass";
 
 const RegisterForm = () => {
   const {
@@ -37,19 +38,17 @@ const RegisterForm = () => {
         {...register("email")}
       />
 
-      <Input
+      <InputPass
         id="password"
         label="Senha"
-        type="password"
         errors={errors.password?.message}
         placeholder="Digite sua senha aqui"
         {...register("password")}
       />
 
-      <Input
+      <InputPass
         id="passwordConfirmation"
         label="Confirmação de senha"
-        type="password"
         errors={errors.passwordConfirmation?.message}
         placeholder="Digite a senha novamente"
         {...register("passwordConfirmation")}

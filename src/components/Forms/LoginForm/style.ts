@@ -35,7 +35,6 @@ export const LoginFormStyle = styled.form`
   button:hover,
   a:hover {
     color: #8e0e00;
-    border: solid 1px #8e0e00;
     background: #000000;
     background: -webkit-linear-gradient(to right, #1f1c18, #000000);
     background: linear-gradient(to right, #1f1c18, #000000);

@@ -6,6 +6,7 @@ import { loginSchema } from "./validations";
 import Input from "../../Input";
 import { Link } from "react-router-dom";
 import { LoginFormStyle } from "./style";
+import InputPass from "../../Input/InputPass";
 
 const LoginForm = () => {
   const {
@@ -29,10 +30,9 @@ const LoginForm = () => {
         {...register("email")}
       />
 
-      <Input
+      <InputPass
         id="password"
         label="Senha"
-        type="password"
         errors={errors.password?.message}
         placeholder="Digite seu password aqui"
         {...register("password")}
