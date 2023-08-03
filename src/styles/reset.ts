@@ -41,7 +41,10 @@ export const GlobalReset = createGlobalStyle`
         background: -webkit-linear-gradient(to right,#1F1C18, #000000);
         background: linear-gradient(to right, #1F1C18, #000000);
 
+    }
 
+    h1, h2, h3{
+        line-height: 150%;
 
     }
     

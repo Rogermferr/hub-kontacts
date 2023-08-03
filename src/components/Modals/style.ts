@@ -65,7 +65,7 @@ export const ModalDeleteStyle = styled.div`
   gap: 16px;
 
   width: 400px;
-  height: 200px;
+  height: 300px;
   overflow-y: auto;
 
   background: #8e0e00;

@@ -12,6 +12,8 @@ export interface IContactsContext {
   setIsDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
   deleteContacts: () => Promise<void>;
   findContactDelete: (contactId: string) => void;
+  loadingContacts: boolean;
+  setLoadingContacts: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IContactsProviderProps {

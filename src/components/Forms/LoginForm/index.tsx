@@ -7,6 +7,7 @@ import Input from "../../Input";
 import { Link } from "react-router-dom";
 import { LoginFormStyle } from "./style";
 import InputPass from "../../Input/InputPass";
+import { motion } from "framer-motion";
 
 const LoginForm = () => {
   const {
@@ -21,27 +22,32 @@ const LoginForm = () => {
   const { userLogin } = useUserContext();
 
   return (
-    <LoginFormStyle onSubmit={handleSubmit(userLogin)}>
-      <Input
-        id="email"
-        label="Email"
-        errors={errors.email?.message}
-        placeholder="Digite seu email aqui"
-        {...register("email")}
-      />
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}>
+      <LoginFormStyle onSubmit={handleSubmit(userLogin)}>
+        <Input
+          id="email"
+          label="Email"
+          errors={errors.email?.message}
+          placeholder="Digite seu email aqui"
+          {...register("email")}
+        />
 
-      <InputPass
-        id="password"
-        label="Senha"
-        errors={errors.password?.message}
-        placeholder="Digite seu password aqui"
-        {...register("password")}
-      />
+        <InputPass
+          id="password"
+          label="Senha"
+          errors={errors.password?.message}
+          placeholder="Digite seu password aqui"
+          {...register("password")}
+        />
 
-      <button type="submit">Entrar</button>
-      <span>Não possui cadastro?</span>
-      <Link to={"/register"}>Cadastre-se</Link>
-    </LoginFormStyle>
+        <button type="submit">Entrar</button>
+        <span>Não possui cadastro?</span>
+        <Link to={"/register"}>Cadastre-se</Link>
+      </LoginFormStyle>
+    </motion.section>
   );
 };
 

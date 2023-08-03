@@ -9,6 +9,8 @@ export interface IUserContext {
   isModalDeleteOpen: boolean;
   setIsModalDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
   userDeleteProfile: () => Promise<void>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IUserProviderProps {

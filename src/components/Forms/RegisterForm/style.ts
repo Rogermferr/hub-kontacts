@@ -58,6 +58,6 @@ export const RegisterFormStyle = styled.form`
   }
 
   @media (max-width: 769px) {
-    width: 80%;
+    width: 100%;
   }
 `;

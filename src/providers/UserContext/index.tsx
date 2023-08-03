@@ -19,11 +19,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [changed, setChanged] = useState(false);
 
   const token = localStorage.getItem("@KK:TOKEN");
 
   useEffect(() => {
     const getUserInfos = async () => {
+      setLoading(true);
       try {
         const { data } = await api.get("/users", {
           headers: {
@@ -35,12 +38,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       } catch (error) {
         console.error(error);
       } finally {
+        setLoading(false);
+
         console.clear();
       }
     };
 
     getUserInfos();
-  }, [isModalOpen, isModalDeleteOpen]);
+  }, [changed]);
 
   const userLogin = async (loginData: ILoginUser) => {
     try {
@@ -50,6 +55,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       api.defaults.headers.common.Authorization = `Bearer ${data.token}`;
 
       setUser(data.user);
+      setChanged(!changed);
 
       navigate("/dashboard");
     } catch (error: any) {
@@ -66,6 +72,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       await api.post<IRegisterUser>("/users", newUserData);
 
       toast.success("Usuário cadastrado");
+
       navigate("/");
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
@@ -89,6 +96,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
       toast.success("Perfil editado");
 
+      setChanged(!changed);
       setIsModalOpen(false);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
@@ -106,6 +114,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       });
 
       setIsModalDeleteOpen(false);
+      setChanged(!changed);
       setUser(null);
 
       localStorage.removeItem("@KK:TOKEN");
@@ -131,6 +140,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         isModalDeleteOpen,
         setIsModalDeleteOpen,
         userDeleteProfile,
+        loading,
+        setLoading,
       }}>
       {children}
     </UserContext.Provider>

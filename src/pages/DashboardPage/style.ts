@@ -10,7 +10,7 @@ export const DashboardPageStyle = styled.div`
     flex-direction: column;
     gap: 64px;
 
-    margin: 0 150px;
+    margin: 50px 150px;
 
     color: #fff;
 

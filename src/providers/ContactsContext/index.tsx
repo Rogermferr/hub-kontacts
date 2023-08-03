@@ -16,11 +16,14 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [editingContact, setEditingContact] = useState({} as IContact);
+  const [loadingContacts, setLoadingContacts] = useState(false);
+  const [changed, setChanged] = useState(false);
 
   const token = localStorage.getItem("@KK:TOKEN");
 
   useEffect(() => {
     const getAllContacts = async () => {
+      setLoadingContacts(true);
       try {
         const { data } = await api.get<IContact[]>("/contacts", {
           headers: {
@@ -32,16 +35,17 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
       } catch (error: any) {
         toast.error(error?.response?.data?.message);
       } finally {
+        setLoadingContacts(false);
         console.clear();
       }
     };
 
     getAllContacts();
-  }, [isOpen, isEditOpen, isDeleteOpen]);
+  }, [changed]);
 
   const createContacts = async (contactData: IRegisterContact) => {
     try {
-      const { data } = await api.post<IContact>("/contacts", contactData, {
+      await api.post<IContact>("/contacts", contactData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,15 +53,13 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       toast.success("Contato criado");
 
-      console.log(data);
-
+      setChanged(!changed);
       setIsOpen(false);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
+    } finally {
+      console.clear();
     }
-    // finally {
-    //   console.clear();
-    // }
   };
 
   const findContactEdit = (contactId: string) => {
@@ -88,6 +90,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       toast.success("Contato editado");
 
+      setChanged(!changed);
       setIsEditOpen(false);
     } catch (error: any) {
       const message = error?.response?.data?.message;
@@ -109,6 +112,7 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
 
       toast.success("Contato deletado");
 
+      setChanged(!changed);
       setIsDeleteOpen(false);
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
@@ -133,6 +137,8 @@ export const ContactsProvider = ({ children }: IContactsProviderProps) => {
         setIsDeleteOpen,
         deleteContacts,
         findContactDelete,
+        loadingContacts,
+        setLoadingContacts,
       }}>
       {children}
     </ContactsContext.Provider>

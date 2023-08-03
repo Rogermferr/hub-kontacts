@@ -5,25 +5,38 @@ import RegisterPage from "../pages/RegisterPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import DashboardPage from "../pages/DashboardPage";
 import { ContactsProvider } from "../providers/ContactsContext";
+import Loading from "../components/Loading";
+import { useUserContext } from "../hooks/useUserContext";
+import { AnimatePresence } from "framer-motion";
 
 const RouterMain = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<PublicRoutes />}>
-        <Route index element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Route>
+  const { loading } = useUserContext();
 
-      <Route path="/dashboard" element={<ProtectedRoutes />}>
-        <Route
-          index
-          element={
-            <ContactsProvider>
-              <DashboardPage />
-            </ContactsProvider>
-          }></Route>
-      </Route>
-    </Routes>
+  return (
+    <AnimatePresence>
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Routes>
+            <Route path="/" element={<PublicRoutes />}>
+              <Route index element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
+
+            <Route path="/dashboard" element={<ProtectedRoutes />}>
+              <Route
+                index
+                element={
+                  <ContactsProvider>
+                    <DashboardPage />
+                  </ContactsProvider>
+                }></Route>
+            </Route>
+          </Routes>
+        )}
+      </>
+    </AnimatePresence>
   );
 };
 

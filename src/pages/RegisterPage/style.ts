@@ -7,13 +7,18 @@ export const RegisterPageStyle = styled.main`
   gap: 16px;
   margin-top: 50px;
 
-  img {
+  section {
+    display: flex;
+    justify-content: center;
     width: 350px;
-    height: 50px;
-  }
 
-  @media (max-width: 769px) {
     img {
+      height: 50px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 769px) {
+    section {
       width: 90%;
     }
   }

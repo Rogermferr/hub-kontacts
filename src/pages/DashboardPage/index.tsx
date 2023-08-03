@@ -9,6 +9,7 @@ import ModalEditProfile from "../../components/Modals/ModalEditProfile";
 import { useContactsContext } from "../../hooks/useContactsContext";
 import { useUserContext } from "../../hooks/useUserContext";
 import { DashboardPageStyle } from "./style";
+import { motion } from "framer-motion";
 
 const DashboardPage = () => {
   const { isModalOpen, user, isModalDeleteOpen } = useUserContext();
@@ -16,13 +17,21 @@ const DashboardPage = () => {
 
   return (
     <DashboardPageStyle>
-      <Header />
-      <Menu />
-      <main>
-        <h1>Olá {user?.fullName}</h1>
-        <h2>Seus Contatos:</h2>
-        <ListContacts />
-      </main>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}>
+        <Header />
+        <Menu />
+        <main>
+          <h1>
+            Olá!
+            <br /> {user?.fullName}
+          </h1>
+          <h2>Seus Contatos:</h2>
+          <ListContacts />
+        </main>
+      </motion.div>
       {isModalOpen && <ModalEditProfile />}
       {isOpen && <ModalCreateContact />}
       {isModalDeleteOpen && <ModalDeleteProfile />}
