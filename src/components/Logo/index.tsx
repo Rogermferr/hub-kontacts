@@ -1,6 +1,7 @@
-import logo from "../../assets/Logo.svg";
+import logo from '../../assets/Logo.svg'
+import { LogoStyle } from './style'
 const Logo = () => {
-  return <img src={logo} alt="" />;
-};
+  return <LogoStyle src={logo} alt="" />
+}
 
-export default Logo;
+export default Logo

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LoginPageStyle = styled.main`
   display: flex;
@@ -11,15 +11,11 @@ export const LoginPageStyle = styled.main`
     display: flex;
     justify-content: center;
     width: 350px;
-
-    img {
-      height: 50px;
-      width: 100%;
-    }
   }
+
   @media (max-width: 769px) {
     section {
       width: 90%;
     }
   }
-`;
+`
